@@ -38,7 +38,21 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Account Type</label>
 
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="role" value="homeowner" checked>
+                <label class="form-check-label">Homeowner</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="role" value="provider">
+                <label class="form-check-label">Service Provider</label>
+            </div>
+        </div>
+        
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}

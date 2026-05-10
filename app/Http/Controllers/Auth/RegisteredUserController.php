@@ -34,17 +34,25 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => ['nullable', 'in:homeowner,provider'], // <-- key
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+
+            // SAFE ROLE HANDLING
+            'role' => $request->role === 'provider' ? 'provider' : 'homeowner',
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
+
+        if ($user->isProvider()) {
+            return redirect()->route('dashboard.provider');
+        }
 
         return redirect(route('dashboard', absolute: false));
     }
