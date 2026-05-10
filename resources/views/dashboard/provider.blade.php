@@ -3,7 +3,14 @@
 @section('title', 'Provider Dashboard')
 
 @section('content')
+
 <section class="max-w-7xl mx-auto px-4 py-8">
+    <a href="{{ route('businesses.create') }}">
+        <button class="bg-green-600 text-white font-bold px-6 py-3 rounded-xl hover:bg-green-700">
+            Add Business
+        </button>
+    </a>
+    </br></br>
     <h1 class="text-2xl font-extrabold mb-6">Provider Dashboard</h1>
 
     @unless($business)

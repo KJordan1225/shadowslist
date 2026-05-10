@@ -125,12 +125,13 @@ class BusinessController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $this->authorize('create', Business::class);
+    {       
+        
+        $this->authorize('create', Business::class);        
 
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'min:25'],
+            'description' => ['required', 'string', 'min:5'],
             'phone' => ['nullable', 'string', 'max:30'],
             'email' => ['nullable', 'email', 'max:255'],
             'website' => ['nullable', 'url', 'max:255'],
@@ -148,6 +149,7 @@ class BusinessController extends Controller
             'cover_photo' => ['nullable', 'image', 'max:4096'],
         ]);
 
+                // dd($validated);
         /** @var User $user */
         $user = Auth::user();
 
@@ -160,6 +162,8 @@ class BusinessController extends Controller
             'insured' => $request->boolean('insured'),
             'status' => 'pending',
         ]);
+
+        
 
         if ($request->hasFile('logo')) {
             $business->update([

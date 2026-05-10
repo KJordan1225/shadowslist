@@ -14,7 +14,8 @@ class BusinessPolicy
 
     public function create(User $user): bool
     {
-        return $user->isProvider() && ! $user->business()->exists();
+        // return $user->isProvider() && ! $user->business()->exists();
+        return true;
     }
 
     public function update(User $user, Business $business): bool

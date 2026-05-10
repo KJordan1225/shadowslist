@@ -172,26 +172,7 @@
             @endif
 
             @auth
-                <form method="POST" action="{{ route('businesses.message', $business) }}" class="space-y-3">
-                    @csrf
-
-                    <input
-                        name="subject"
-                        placeholder="Subject"
-                        class="w-full border border-gray-300 rounded-xl px-4 py-2"
-                    >
-
-                    <textarea
-                        name="body"
-                        rows="4"
-                        placeholder="Message"
-                        class="w-full border border-gray-300 rounded-xl px-4 py-2"
-                    ></textarea>
-
-                    <button class="w-full bg-green-600 text-white font-bold px-4 py-2 rounded-xl hover:bg-green-700">
-                        Send Message
-                    </button>
-                </form>
+                
             @else
                 <a href="{{ route('login') }}" class="block text-center bg-green-600 text-white font-bold px-4 py-2 rounded-xl">
                     Login to Message
